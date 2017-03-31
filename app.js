@@ -5,7 +5,7 @@ define(function(require){
 		chosen = require('chosen');
 
 	var app = {
-		name: 'userportal2',
+		name: 'userportal4',
 
 		css: [ 'app','bootstrap.min' ],
 

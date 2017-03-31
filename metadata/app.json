@@ -1,8 +1,8 @@
 {
-	"name": "voicemails",
+	"name": "userportal4",
 	"i18n": {
 		"en-US": {
-			"label": "Voicemail Manager",
+			"label": "User Portal v4",
 			"description": "The Voicemail Manager lets you browse your users voicemails boxes and manage their voicemails.",
 			"extended_description": "",
 			"features": [
@@ -12,7 +12,7 @@
 	"tags": [
 		"reseller"
 	],
-	"icon": "Voicemail_app.png",
+	"icon": "userportal.png",
 	"api_url": "http://10.26.0.41:8000/v2",
 	"author": "2600Hz",
 	"version": "1.0",
