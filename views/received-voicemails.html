@@ -1,10 +1,100 @@
 <div class="container">
 <div class="row">
-<div class="col-sm-8">
+<div class="col-sm-6">
 <div class="received-voicemails-container">
+<h1>{{ i18n.userportal4.my_settings }}</h1>
+<div id="settings-view">
+                <form>
+                <div class="clearfix">
+                        <label>{{ i18n.userportal4.enable_call_forward }}:</label>
+                        <div class="input">
+                          <label class="monster-checkbox">
+                            {{#if data.call_forward.enabled}}
+                                <input class="checkbox" id="call-forward-enabled" name="call_forward.enabled" type="checkbox" checked="checked"/><i></i>
+                            {{else}}
+                                <input class="checkbox" id="call-forward-enabled" name="call_forward.enabled" type="checkbox"/><i></i>
+                            {{/if}}
+                          </label>
+                         </div>
+                     </div>
+                    <div id="call-forward-data">
+                        <div class="clearfix">
+                            <label><span class="icon phone"/>{{ i18n.userportal4.forward_calls_to }}:</label>
+                            <div class="input">
+                                <input id="ring-number-txt" name="ring-number-txt" type="text" value="${data.call_forward.number}"/>
+                            </div>
+                        </div>
+                        <div class="clearfix device-field">
+                            <label>{{ i18n.userportal4.also_ring_my_voip_phone }}:</label>
+                            <div class="input">
+                              <label class="monster-checkbox">
+                                {{#if data.call_forward.substitute}}
+                                    <input class="checkbox" id="ring-device-checkbox" name="ring-device-checkbox" type="checkbox"/><i></i>
+                                {{else}}
+                                    <input class="checkbox" id="ring-device-checkbox" name="ring-device-checkbox" type="checkbox" checked="checked"/><i></i>
+                                {{/if}}
+                              </label>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <label>{{ i18n.userportal4.keep_caller_id }}:</label>
+                            <div class="input">
+                              <label class="monster-checkbox">
+                                {{#if data.call_forward.keep_caller_id}}
+                                    <input id="call_forward_keep_caller_id" class="checkbox" name="call_forward.keep_caller_id" type="checkbox" checked="checked"/><i></i>
+                                {{else}}
+                                    <input id="call_forward_keep_caller_id" class="checkbox" name="call_forward.keep_caller_id" type="checkbox"/><i></i>
+                                {{/if}}
+                              </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix">
+                        <label>{{ i18n.userportal4.send_voicemail_to_email }}:</label>
+                        <div class="input">
+                          <label class="monster-checkbox">
+                            {{#if data.vm_to_email_enabled}}
+                                <input id="vm-to-email-checkbox" class="checkbox" name="vm-to-email-checkbox" type="checkbox" checked="checked"/><i></i>
+                            {{else}}
+                                <input id="vm-to-email-checkbox" class="checkbox" name="vm-to-email-checkbox" type="checkbox"/><i></i>
+                            {{/if}}
+                          </label>
+                        </div>
+                    </div>
+                    <div class="clearfix email-field">
+                        <label>{{ i18n.userportal4.email_address }}:</label>
+                        <div class="input">
+                            <input id="vm-to-email-txt" name="vm-to-email-txt" type="text" value="{{data.email}}"/>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <button id="save-settings-link" class="monster-button monster-button-success save-btn">{{ i18n.userportal4.save }}</button>
+                    </div>
+                </form>
+            </div></div></div>
+            <div class="col-sm-6">
+<div class="received-voicemails-container">
+<div class="block devices_wrapper">
+            <h1>{{ i18n.userportal4.my_devices }}</h1>
+            <div class="help_devices">
+                {{ i18n.userportal4.registered_devices_are_displayed }}
+            </div>
+            <div class="list_devices">
+                <div class="clear"/>
+            </div>
+            <!--<div class="buttons">
+                <button class="btn success add_device">Add a New Device</button>
+            </div>-->
+        </div>
+    </div></div></div>
+            </div>
+<div class="row">
+<div class="col-sm-12">
+<div class="received-voicemails-container">
+<h1>{{ i18n.userportal4.my_voicemails }}</h1>
 	<div class="action-bar clearfix">
 		<div class="filters basic-actions pull-left">
-			<div class="select-voicemails-wrapper monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.voicemails.receivedVMs.actionBar.tooltips.select }}">
+			<div class="select-voicemails-wrapper monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userportal4.receivedVMs.actionBar.tooltips.select }}">
 				<li class="dropdown">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
 						{{#monsterCheckbox}}
@@ -13,32 +103,32 @@
 						<i class="icon-telicon-caret-down"></i>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="javascript:void(0);" class="select-some-messages" data-type="all">{{ i18n.voicemails.receivedVMs.actionBar.select.all }}</a></li>
-						<li><a href="javascript:void(0);" class="select-some-messages" data-type="new">{{ i18n.voicemails.receivedVMs.actionBar.select.new }}</a></li>
-						<li><a href="javascript:void(0);" class="select-some-messages" data-type="saved">{{ i18n.voicemails.receivedVMs.actionBar.select.listened }}</a></li>
-						<li><a href="javascript:void(0);" class="select-some-messages" data-type="deleted">{{ i18n.voicemails.receivedVMs.actionBar.select.deleted }}</a></li>
-						<li><a href="javascript:void(0);" class="select-some-messages" data-type="none">{{ i18n.voicemails.receivedVMs.actionBar.select.none }}</a></li>
+						<li><a href="javascript:void(0);" class="select-some-messages" data-type="all">{{ i18n.userportal4.receivedVMs.actionBar.select.all }}</a></li>
+						<li><a href="javascript:void(0);" class="select-some-messages" data-type="new">{{ i18n.userportal4.receivedVMs.actionBar.select.new }}</a></li>
+						<li><a href="javascript:void(0);" class="select-some-messages" data-type="saved">{{ i18n.userportal4.receivedVMs.actionBar.select.listened }}</a></li>
+						<li><a href="javascript:void(0);" class="select-some-messages" data-type="deleted">{{ i18n.userportal4.receivedVMs.actionBar.select.deleted }}</a></li>
+						<li><a href="javascript:void(0);" class="select-some-messages" data-type="none">{{ i18n.userportal4.receivedVMs.actionBar.select.none }}</a></li>
 					</ul>
 				</li>
 			</div>
 
 			<div class="filters selected-actions pull-left margin-left">
-				<div class="mark-as-wrapper hidable hidden monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.voicemails.receivedVMs.actionBar.tooltips.markAs }}">
+				<div class="mark-as-wrapper hidable hidden monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userportal4.receivedVMs.actionBar.tooltips.markAs }}">
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
 							<i class="icon-telicon-prioritize"></i>
 							<i class="icon-telicon-caret-down"></i>
 						</a>
 						<ul class="dropdown-menu">
-							<li><a href="javascript:void(0);" class="mark-as-link" data-type="new">{{ i18n.voicemails.receivedVMs.actionBar.markAsNew }}</a></li>
-							<li><a href="javascript:void(0);" class="mark-as-link" data-type="saved">{{ i18n.voicemails.receivedVMs.actionBar.markAsListened }}</a></li>
-							<li><a href="javascript:void(0);" class="mark-as-link" data-type="deleted">{{ i18n.voicemails.receivedVMs.actionBar.markAsDeleted }}</a></li>
-							<li><a href="javascript:void(0);" class="delete-voicemails">{{ i18n.voicemails.receivedVMs.actionBar.delete }}</a></li>
+							<li><a href="javascript:void(0);" class="mark-as-link" data-type="new">{{ i18n.userportal4.receivedVMs.actionBar.markAsNew }}</a></li>
+							<li><a href="javascript:void(0);" class="mark-as-link" data-type="saved">{{ i18n.userportal4.receivedVMs.actionBar.markAsListened }}</a></li>
+							<li><a href="javascript:void(0);" class="mark-as-link" data-type="deleted">{{ i18n.userportal4.receivedVMs.actionBar.markAsDeleted }}</a></li>
+							<li><a href="javascript:void(0);" class="delete-voicemails">{{ i18n.userportal4.receivedVMs.actionBar.delete }}</a></li>
 						</ul>
 					</li>
 				</div>
 
-				<div class="move-to-wrapper hidable hidden monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.voicemails.receivedVMs.actionBar.tooltips.moveTo }}">
+				<div class="move-to-wrapper hidable hidden monster-select-dropdown pull-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userportal4.receivedVMs.actionBar.tooltips.moveTo }}">
 					<li class="dropdown">
 						<a data-toggle="dropdown" class="dropdown-toggle" href="javascript:void(0);">
 							<i class="icon-telicon-forward"></i>
@@ -62,7 +152,7 @@
 				{{/each}}
 			</select>
 
-			<button id="refresh_voicemails" class="monster-button-secondary monster-button-fit margin-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.voicemails.receivedVMs.actionBar.tooltips.refresh }}">
+			<button id="refresh_voicemails" class="monster-button-secondary monster-button-fit margin-left" data-toggle="tooltip" data-placement="top" data-original-title="{{ i18n.userportal4.receivedVMs.actionBar.tooltips.refresh }}">
 				<i class="fa fa-refresh"></i>
 			</button>
 		</div>
@@ -70,7 +160,7 @@
 
 		<div class="filter-by-date">
 			<div class="expand-dates">
-				<a class="monster-link blue toggle-filter">{{ i18n.voicemails.receivedVMs.filterByDate }}</a>
+				<a class="monster-link blue toggle-filter">{{ i18n.userportal4.receivedVMs.filterByDate }}</a>
 			</div>
 			<div class="date-ranges">
 				<span>{{i18n.startDate}}</span>
@@ -86,12 +176,12 @@
 	<div class="content">
 		<div class="empty-state">
 			<i class="icon-title icon-telicon-voicemail"></i>
-			<div class="headline">{{ i18n.voicemails.receivedVMs.empty.headline }}</div>
+			<div class="headline">{{ i18n.userportal4.receivedVMs.empty.headline }}</div>
 			<div class="vmboxes-list">
 				<table class="monster-table footable">
 					<thead>
 						<tr>
-							<th data-breakpoints="xs">{{ i18n.voicemails.receivedVMs.table.columns.name }}</th>
+							<th data-breakpoints="xs">{{ i18n.userportal4.receivedVMs.table.columns.name }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -113,12 +203,12 @@
 					<thead>
 						<tr>
 							<th data-type="html" data-sortable="false"></th>
-							<th>{{ i18n.voicemails.receivedVMs.table.columns.status }}</th>
-							<!--<th>{{ i18n.voicemails.receivedVMs.table.columns.callId }}</th>-->
-							<th data-type="html" data-sorted="true" data-direction="DESC">{{ i18n.voicemails.receivedVMs.table.columns.received }}</th>
-							<th>{{ i18n.voicemails.receivedVMs.table.columns.from }}</th>
-							<th>{{ i18n.voicemails.receivedVMs.table.columns.targetNumber }}</th>
-							<th data-breakpoints="xs">{{ i18n.voicemails.receivedVMs.table.columns.duration }}</th>
+							<th>{{ i18n.userportal4.receivedVMs.table.columns.status }}</th>
+							<!--<th>{{ i18n.userportal4.receivedVMs.table.columns.callId }}</th>-->
+							<th data-type="html" data-sorted="true" data-direction="DESC">{{ i18n.userportal4.receivedVMs.table.columns.received }}</th>
+							<th>{{ i18n.userportal4.receivedVMs.table.columns.from }}</th>
+							<th>{{ i18n.userportal4.receivedVMs.table.columns.targetNumber }}</th>
+							<th data-breakpoints="xs">{{ i18n.userportal4.receivedVMs.table.columns.duration }}</th>
 							<th data-filterable="false" data-type="html" data-sortable="false"></th>
 						</tr>
 					</thead>
@@ -133,4 +223,7 @@
 			<i class="fa fa-spin fa-spinner monster-primary-color"></i>
 		</div>
 	</div>
-</div></div></div></div>
+</div>
+</div>
+
+</div></div></div>

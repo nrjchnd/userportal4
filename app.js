@@ -51,7 +51,7 @@ define(function(require){
 					{
 						tabs: [
 							{
-								text: self.i18n.active().voicemails.menuTitles.receivedVMs,
+								text: self.i18n.active().userportal4.menuTitles.receivedVMs,
 								callback: self.renderReceivedVMs
 							}
 						]
@@ -121,7 +121,7 @@ define(function(require){
 			monster.ui.tooltips(template);
 			monster.ui.footable(template.find('.footable'));
 
-			$selectVMBox.chosen({search_contains: true, width: '220px', placeholder_text_single: self.i18n.active().voicemails.receivedVMs.actionBar.selectVM.none });
+			$selectVMBox.chosen({search_contains: true, width: '220px', placeholder_text_single: self.i18n.active().userportal4.receivedVMs.actionBar.selectVM.none });
 
 			template.find('.vmboxes-list').on('click', '.box-row', function() {
 				$selectVMBox.val($(this).data('id'));
@@ -243,9 +243,9 @@ define(function(require){
 
 					monster.ui.renderJSON(cdr, template.find('#jsoneditor'));
 
-					monster.ui.dialog(template, { title: self.i18n.active().voicemails.receivedVMs.CDRPopup.title });
+					monster.ui.dialog(template, { title: self.i18n.active().userportal4.receivedVMs.CDRPopup.title });
 				}, function() {
-					monster.ui.alert(self.i18n.active().voicemails.receivedVMs.noCDR);
+					monster.ui.alert(self.i18n.active().userportal4.receivedVMs.noCDR);
 				});
 			});
 
@@ -347,7 +347,7 @@ define(function(require){
 
 					$row.find('.status').data('folder', 'saved')
 										.attr('data-folder', 'saved')
-										.html(self.i18n.active().voicemails.receivedVMs.status['saved']);
+										.html(self.i18n.active().userportal4.receivedVMs.status['saved']);
 				});
 			}
 
