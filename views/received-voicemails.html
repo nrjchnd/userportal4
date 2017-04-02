@@ -1,7 +1,7 @@
 <div class="container">
 <div class="row">
 <div class="col-sm-6">
-<div class="received-voicemails-container">
+<div class="my-settings-container">
 <h1>{{ i18n.userportal4.my_settings }}</h1>
 <div id="settings-view">
                 <form>
@@ -10,7 +10,8 @@
                         <div class="input">
                           <label class="monster-checkbox">
                             {{#if data.call_forward.enabled}}
-                                <input class="checkbox" id="call-forward-enabled" name="call_forward.enabled" type="checkbox" checked="checked"/><i></i>
+                                <input class="checkbox" id="call-forward-enabled" name="call_forward.enabled" type="checkbox" checked="checked"
+                                /><i></i>
                             {{else}}
                                 <input class="checkbox" id="call-forward-enabled" name="call_forward.enabled" type="checkbox"/><i></i>
                             {{/if}}

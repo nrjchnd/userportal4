@@ -275,3 +275,9 @@ table.footable>tbody>tr>td.footable-sortable, table.footable>tbody>tr>th.footabl
     border-radius: 2px;
     cursor: pointer;
 }
+
+:after, :before {
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: borde;
+    box-sizing: content-box;
+}

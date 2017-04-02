@@ -7,7 +7,7 @@ define(function(require){
 	var app = {
 		name: 'userportal4',
 
-		css: [ 'app','bootstrap.min' ],
+		css: [ 'bootstrap.min', 'app' ],
 
 		i18n: { 
 			'en-US': { customCss: false }
@@ -63,15 +63,17 @@ define(function(require){
 		renderReceivedVMs: function(pArgs) {
 			var self = this,
 				args = pArgs || {},
-				parent = args.container || $('#voicemails_app_container .app-content-wrapper');
-				console.log(self);
+				parent = args.container || $('#voicemails_app_container .app-content-wrapper'),
+				userId = self.userId;
+				//console.log(userId);
 
-			self.listVMBoxes(function(vmboxes) {
+			self.usersGetUser(userId, function(data) {
+				//console.log(data.call_forward.enabled);
 				var dataTemplate = {
-						vmboxes: vmboxes
-					},
+					data: data
+				},
 					template = $(monster.template(self, 'received-voicemails', dataTemplate));
-
+					//console.log(dataTemplate);
 				self.voicemailsInitDatePicker(parent, template);
 
 				self.bindReceivedVMs(template);
@@ -84,6 +86,27 @@ define(function(require){
 							.fadeIn();
 					});
 			});
+
+			//self.listVMBoxes(function(vmboxes) {
+
+			//	var dataTemplate = {
+			//			vmboxes: vmboxes
+			//		},
+					//template = $(monster.template(self, 'received-voicemails', dataTemplate));
+					//console.log(template);
+
+				//self.voicemailsInitDatePicker(parent, template);
+
+				//self.bindReceivedVMs(template);
+
+				//parent
+				//	.fadeOut(function() {
+				//		$(this)
+				//			.empty()
+				//			.append(template)
+				//			.fadeIn();
+				//	});
+			//});
 		},
 
 		voicemailsInitDatePicker: function(parent, template) {
@@ -116,7 +139,10 @@ define(function(require){
 		bindReceivedVMs: function(template) {
 			var self = this,
 				currentVM,
-				$selectVMBox = template.find('#select_vmbox');
+				$selectVMBox = template.find('#select_vmbox'),
+				s = _.find("#call-forward-data");
+				//down = $(s).slideDown()
+
 
 			monster.ui.tooltips(template);
 			monster.ui.footable(template.find('.footable'));
@@ -132,6 +158,12 @@ define(function(require){
 			$selectVMBox.on('change', function() {
 				self.displayVMList(template, $(this).val());
 			});
+			//console.log(self);
+			template.find("#call-forward-enabled").on("change", function() {
+					//console.log($(this).prop("checked")),
+                    $(this).prop("checked") ? $(s).slideDown() : $(s).slideUp()
+                    
+                });
 
 			//template.find('#refresh_voicemails').on('click', function() {
 			template.find('#refresh_voicemails').val(function() {
@@ -139,7 +171,7 @@ define(function(require){
 				var userId = self.userId;
 				var accountId = self.accountId;
 				self.accountGet(accountId, function(account) {
-					console.log(account);
+					//console.log(account);
 				});
 				self.usersGetUser(userId, function(user) {
 						//console.log(user);
