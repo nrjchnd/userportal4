@@ -338,6 +338,36 @@ define(function(require){
 			});
 		},
 
+		refreshListDevices: function(callback) {
+                var self = this,
+                    i = callback,
+                    s = {
+                        cellphone: "Cell",
+                        smartphone: "Smartphone",
+                        fax: "Fax",
+                        sip_device: "VoIP",
+                        softphone: "Softphone",
+                        landline: "Landline"
+                    };
+                self.getRegisteredDevices(function(callback) {
+                    self.getUserDevices(function(o) {
+                        $(".list_devices", i).html('<div class="clear"/>'), $("#device_quickcall", i).empty();
+                        var u, a = {};
+                        $.each(e.data, function(callback, $) {
+                            a[t.device_id] = !0
+                        }), $.each(o.data, function(callback, o) {
+                            o.registered = o.id in a || $.inArray(o.device_type, ["cellphone", "smartphone", "landline"]) > -1 ? "registered" : "unregistered", u = {
+                                status: o.registered,
+                                name: o.name,
+                                device_type: o.device_type,
+                                friendly_type: s[o.device_type],
+                                id: o.id
+                            }, o.registered === "registered" && t("#device_quickcall", i).append('<option value="' + o.id + '">' + o.name + "</option>"), $(".list_devices", i).prepend(r.template(self, "device_line", u))
+                        })
+                    })
+                })
+            },
+
 		removeOpacityLayer: function(template) {
 			var $activeRows = template.find('.voicemail-row.active'),
 				$table = template.find('table');
@@ -700,7 +730,49 @@ define(function(require){
 					callback && callback(vmbox[0].id);
 				});
 			});
-		}
+		},
+
+		getRegisteredDevices: function(e) {
+                var t = this;
+                t.callApi({
+                    resource: "device.getStatus",
+                    data: {
+                        accountId: t.accountId
+                    },
+                    success: function(t) {
+                        e && e(t)
+                    }
+                })
+            },
+            getUserDevices: function(e) {
+                var t = this;
+                t.callApi({
+                    resource: "device.list",
+                    data: {
+                        accountId: t.accountId,
+                        filters: {
+                            filter_owner_id: t.userId
+                        }
+                    },
+                    success: function(t) {
+                        e && e(t)
+                    }
+                })
+            },
+            updateUser: function(e, t) {
+                var n = this;
+                n.callApi({
+                    resource: "user.update",
+                    data: {
+                        accountId: n.accountId,
+                        userId: n.userId,
+                        data: e
+                    },
+                    success: function(e) {
+                        t && t(e)
+                    }
+                })
+            }
 	};
 
 	return app;
