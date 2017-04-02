@@ -140,9 +140,7 @@ define(function(require){
 			var self = this,
 				currentVM,
 				$selectVMBox = template.find('#select_vmbox'),
-				s = _.find("#call-forward-data");
-				//down = $(s).slideDown()
-
+				s = template.find("#call-forward-data");
 
 			monster.ui.tooltips(template);
 			monster.ui.footable(template.find('.footable'));
@@ -161,7 +159,7 @@ define(function(require){
 			//console.log(self);
 			template.find("#call-forward-enabled").on("change", function() {
 					//console.log($(this).prop("checked")),
-                    $(this).prop("checked") ? $(s).slideDown() : $(s).slideUp()
+                    $(this).prop("checked") ? s.slideDown() : s.slideUp()
                     
                 });
 
